@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/WiseFox-Tr/news_letter_signup#readme",
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.62",
     "dotenv": "^10.0.0",
     "express": "^4.17.1"
   }
