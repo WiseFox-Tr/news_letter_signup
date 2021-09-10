@@ -52,7 +52,6 @@ app.post("/failure", function(req, res) {
     res.redirect("/")
 })
 
-const port = process.env.PORT
-app.listen(port, function(){
-    console.log("Server started on port " + port)
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Server correctly started")
 })
