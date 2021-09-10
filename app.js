@@ -1,6 +1,7 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const mailchimp = require("@mailchimp/mailchimp_marketing")
+const PORT = process.env.PORT || 3000
 
 dotenv.config()
 mailchimp.setConfig({
@@ -52,6 +53,6 @@ app.post("/failure", function(req, res) {
     res.redirect("/")
 })
 
-app.listen(process.env.PORT || 3000, function(){
-    console.log("Server correctly started")
+app.listen(PORT, function(){
+    console.log("Server correctly started on port " + PORT)
 })
