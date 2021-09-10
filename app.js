@@ -1,6 +1,6 @@
 const express = require("express")
 const dotenv = require("dotenv")
-const mailchimp = require("@mailchimp/mailchimp_marketing");
+const mailchimp = require("@mailchimp/mailchimp_marketing")
 
 dotenv.config()
 mailchimp.setConfig({
@@ -16,12 +16,11 @@ app.get("/", function(req, res) {
     res.sendFile(__dirname + "/public/html/signup.html")
 })
 
-app.post("/", function(req, res){
+app.post("/", function(req, res) {
     console.log("request on '/' url")
-    let firstName = req.body.firstName
-    let lastName = req.body.lastName
-    let email = req.body.email
-    console.log("user first name : " + firstName + "\nuser last name : " + lastName +"\nuser mail : " + email)
+    const firstName = req.body.firstName
+    const lastName = req.body.lastName
+    const email = req.body.email
     const listId = process.env.AUDIENCE_LIST_ID;
 
     async function subscribeUser() {
@@ -35,9 +34,16 @@ app.post("/", function(req, res){
                     LNAME: lastName
                 }
             }
-        )
+        ).catch((error) => {
+            //fail case 
+            console.error(error) 
+            res.sendFile(__dirname + "/public/html/failure.html")
+        })
+        //success case
         console.log(`Successfully added contact as an audience member. The contact's id is ${response.id}.`)
+        res.sendFile(__dirname + "/public/html/success.html")
     }
+
     subscribeUser()
 })
 
