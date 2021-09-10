@@ -47,6 +47,11 @@ app.post("/", function(req, res) {
     subscribeUser()
 })
 
+
+app.post("/failure", function(req, res) {
+    res.redirect("/")
+})
+
 const port = process.env.PORT
 app.listen(port, function(){
     console.log("Server started on port " + port)
